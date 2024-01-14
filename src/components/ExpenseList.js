@@ -8,7 +8,16 @@ export class ExpenseList extends Component {
     return (
       <>
         <ul className='list'>
-          <ExpenseItem/>
+          {this.props.initialExpenses.map(expense =>{
+            return(
+              <ExpenseItem
+                expense = {expense}
+                key={expense.id}
+                handleDelete={this.props.handleDelete}
+              />
+            )
+          })}
+
         </ul>
         <button className='btn'>
           목록 지우기

@@ -1,30 +1,23 @@
-import { Component } from "react";
+import { useState } from "react";
 import "./App.css"
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 
-class App extends Component {
+const App = () => {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      expenses : [
-        { id: 1, charge: "렌트비", amount: 1600},
-        { id: 2, charge: "교통비", amount: 400},
-        { id: 3, charge: "식비", amount: 1200}
-      ]
-    }
-  }
+  const [expenses, setExpenses] = useState([
+    {id: 1, charge: "렌트비", amount: 2000},
+    {id: 2, charge: "교통비", amount: 400},
+    {id: 3, charge: "식비", amount: 1600} 
+  ])
 
-  handleDelete = (id) => {
-    const newExpenses = this.state.expenses.filter(expense => 
+ const handleDelete = (id) => {
+    const newExpenses = expenses.filter(expense => 
       expense.id !== id
     )
-    console.log(newExpenses)
-    this.setState({expenses : newExpenses})
+    setExpenses(newExpenses)
   }
 
-  render(){
     return (
       <main className="main-container">
         <h1>예산 계산기</h1>
@@ -33,8 +26,8 @@ class App extends Component {
         </div>
         <div style={{width:'100%', backgroundColor:'white', padding:'1rem'}}className="">
            <ExpenseList
-              initialExpenses={this.state.expenses}
-              handleDelete={this.handleDelete}
+              initialExpenses={expenses}
+              handleDelete={handleDelete}
           />
         </div>
         <div style={{display:'flex', justifyContent:'end', marginTop: '1rem'}}>
@@ -45,6 +38,5 @@ class App extends Component {
         </div>
       </main>
     )
-  }
 }
 export default App;

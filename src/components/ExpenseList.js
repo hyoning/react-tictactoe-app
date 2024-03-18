@@ -2,7 +2,7 @@ import React from 'react'
 import { MdDelete } from 'react-icons/md'
 import ExpenseItem from './ExpenseItem'
 import './ExpenseList.css'
-
+ 
 const ExpenseList = ({handleDelete, expenses, handleEdit, clearItems}) => {
     return (
       <>
